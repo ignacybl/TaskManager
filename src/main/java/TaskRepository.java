@@ -16,11 +16,4 @@ public class TaskRepository {
     public Collection<Task> getTasks(){
         return tasks.values();
     }
-
-    public void displayAll(){
-        System.out.println("Wszystkie zadania: ");
-        for(Task t : tasks.values()){
-            System.out.println(t);
-        }
-    }
 }
