@@ -7,25 +7,20 @@ public class TaskService {
         this.repository = repository;
     }
     public void markAsDONE(String name){
-        boolean isFound = false;
-       for(Task t : repository.getTasks()){
-           if(t.getTitle().equalsIgnoreCase(name)){
-               t.setStatus(TaskStatus.DONE);
-               isFound = true;
-               break;
-           }
-       }
-       if(!isFound) System.out.println("Nie znaleziono zadania");
+        Task t = findTaskByTitle(name);
+        if(t!=null){
+            t.setStatus(TaskStatus.DONE);
+        } else{
+            System.out.println("Nie znaleziono zadania.");
+        }
     }
     public void removeTask(String name){
-        boolean isFound = false;
-        for(Task t : repository.getTasks()){
-            if(t.getTitle().equalsIgnoreCase(name)){
-                this.repository.remove(t.getId());
-                isFound = true;
-            }
+        Task t = findTaskByTitle(name);
+        if(t!=null){
+            repository.remove(t.getId());
+        } else {
+            System.out.println("Nie znaleziono zadania.");
         }
-        if(!isFound) System.out.println("Nie znaleziono zadania");
     }
     public void addTask(String title, String description, LocalDate date){
         repository.add(new Task(title, description, date));
@@ -46,4 +41,13 @@ public class TaskService {
         }
         if(!isFound) System.out.println("Nie znaleziono zadania o statusie: " + status);
     }
+    private Task findTaskByTitle(String name){
+        for(Task t : repository.getTasks()){
+            if(t.getTitle().equalsIgnoreCase(name)){
+                return t;
+            }
+        }
+        return null;
+    }
+
 }

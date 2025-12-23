@@ -12,7 +12,7 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         do{System.out.println("1. Dodaj nowe zadanie\n" +
                 "2. Wyświetl wszystkie zadania\n" + "3. Wyświetl zadanie według statusu\n" +
-                "4. Oznacz zadanie jako zakończone\n" + "5. Usuń zadanie\n" + "6. Zapisz zadanie z pliku\n" +
+                "4. Oznacz zadanie jako zakończone\n" + "5. Usuń zadanie\n" + "6. Zapisz zadania z pliku\n" +
                 "7. Wyjście");
             input = scanner.next();
             scanner.nextLine();
@@ -45,6 +45,11 @@ public class Main {
                     String title = scanner.nextLine();
                     service.removeTask(title);
 
+                }
+                case "6" ->{
+                    System.out.println("Podaj nazwę pliku: ");
+                    String file = scanner.nextLine();
+                    repo.readFromFile(file);
                 }
                 case "7" -> System.out.println("Koniec Programu!");
                 default -> System.out.println("Nieznana komenda");
