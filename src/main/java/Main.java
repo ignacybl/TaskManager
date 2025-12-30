@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        TaskRepository repo = new TaskRepository();
+        TaskRepository repo = new TaskHashMapRepository();
         TaskService service = new TaskService(repo);
         String input;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

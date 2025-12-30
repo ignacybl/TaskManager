@@ -1,7 +1,8 @@
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class TaskService {
-    private TaskRepository repository;
+    private TaskRepository <Task, UUID> repository;
 
     public TaskService(TaskRepository repository){
         this.repository = repository;
